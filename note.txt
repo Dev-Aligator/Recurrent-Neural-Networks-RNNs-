@@ -1,0 +1,10 @@
+The intelligence of humans, as well as most animals, depends
+on having a memory of the past. This can be short-term,
+as when combining sounds to make words, and long-term,
+for example where the word ‘‘she’’ can refer back to ‘‘Anne’’
+mentioned hundreds of words earlier. This is exactly what
+RNN provides in neural networks. It adds feedback that
+enables using the outputs of previous time step while process-
+ing the current time-step input. It aims to add memory cells
+that function similarly to human long-term and short-term
+memories.
