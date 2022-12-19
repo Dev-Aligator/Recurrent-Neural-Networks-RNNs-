@@ -14,13 +14,13 @@
 \usepackage{lipsum}
 \usepackage{fancyhdr}       % header
 \usepackage{graphicx}       % graphics
-\graphicspath{{media/}}     % organize your images and other figures under media/ folder
+\usepackage{physics}
 
 \pagestyle{fancy}
 \thispagestyle{empty}
 \rhead{ \textit{ }} 
 
-\fancyhead[LO]{Recurrent neural networks}
+\fancyhead[LO]{}
 
 
 
@@ -75,6 +75,17 @@ difference is visualised on a high level in Figure 1. Note, that here the option
 hidden layers is aggregated to one Hidden Layer block H. This block can obviously be extended to
 multiple hidden layers.
 \subsection{Model Architecture}
+RNNs add recurrent layers to the NN (Neural Network)
+model and consists of three sets of layers (input, recurrent, and output).
+Input layers take the sensor output and convert it into a vector
+that conveys the features of the input. These are followed by
+the recurrent layers, which provide feedback. In most recent
+recurrent layer models, memory cells exist as well. Subse-
+quently, the model completes similarly to most NN models
+with Fully Connected (FC) layers and an output layer that can
+be a softmax layer. FC layers and the output layer are grouped
+into the set of output layer. \\
+
 We can describe this process of passing information from the previous iteration to the hidden layer
 with the mathematical notation proposed in. For that, we denote the hidden state and the input
 at time step t respecively as $\mathbf{H}_t$ $\in$ $\mathbb{R}^{n \times h}$ and $\mathbf{X}_t$ $\in$ $\mathbb{R}^{n \times d}$ where n is number of samples, d is the
@@ -86,7 +97,7 @@ together yields Equation 1 as the hidden variable and Equation 2 as the output v
 \begin{equation}
   \mathbf{H}_t = \phi_h(\mathbf{X}_t\,\mathbf{W}_{xh} + \mathbf{H}_{t-1}\,\mathbf{W}_{hh} + \mathbf{b}_h)
 \end{equation}
-\newpage
+
 \begin{figure}[h]
   \centering
   \includegraphics*[scale=0.5]{Figs/figure_1.png}
@@ -114,13 +125,12 @@ simple structure is capable of modelling rich dynamics, if it
 is well trained through timesteps.
 \subsection{Activation Function}
 For linear networks, multiple linear hidden layers act as a
-single linear hidden layer [10]. Nonlinear functions are more
+single linear hidden layer. Nonlinear functions are more
 powerful than linear functions as they can draw nonlinear
 boundaries. The nonlinearity in one or successive hidden
 layers in a RNN is the reason for learning input-target re-
 lationships.
-Some of the most popular activation functions are presented
-in Figure 2. The “sigmoid”, “tanh”, and rectified linear unit
+.The “sigmoid”, “tanh”, and rectified linear unit
 (ReLU) have received more attention than the other activation
 functions recently. The “sigmoid” is a common choice, which
 takes a real-value and squashes it to the range [0, 1]. This
@@ -128,12 +138,115 @@ activation function is normally used in the output layer, where
 a cross-entropy loss function is used for training a classifica-
 tion model. The “tanh” and “sigmoid” activation functions are
 defined as
+\footnote{Tanh and sigmoid, both functions
+require floating-point division and exponential operations,
+which are expensive in terms of hardware resources. In order
+to have an efficient implementation for an RNN, non-linear
+function approximations are implemented in hardware. This
+approximation should satisfy a balance between high accuracy and low hardware cost. \\
+\textbf{Look-up tables (LUTs), Piecewise linear approximation, Hard tanh / Hard sigmoid, RALUT.}}
+\begin{equation}
+  tanh(x) = \frac{e^{2x} - 1}{e^{2x} + 1} \:\:\:\:
+  \sigma (x) = \frac{1}{1 + e^{-x}}
+\end{equation}
 
+Respectively, the “tanh” activation function is in fact a scaled
+“sigmoid” activation function such as
+\begin{equation}
+  \sigma (x) = \frac{tanh(x/2)+1}{2}
+\end{equation}
+ReLU is another popular activation function, which is open-
+ended for positive input values, defined as
+\begin{equation}
+  y(x) = max(x,0)
+\end{equation}
+Selection of the activation function is mostly dependent on
+the problem and nature of the data. For example, “sigmoid”
+is suitable for networks where the output is in the range
+[0, 1]. However, the “tanh” and “sigmoid” activation functions
+saturate the neuron very fast and can vanish the gradient.
+Despite “tanh”, the non-zero centered output from “sigmoid”
+can cause unstable dynamics in the gradient updates for
+the weights. The ReLU activation function leads to sparser
+gradients and greatly accelerates the convergence of stochastic
+gradient descent (SGD) compared to the “sigmoid” or “tanh”
+activation functions. ReLU is computationally cheap,
+since it can be implemented by thresholding an activation
+value at zero. However, ReLU is not resistant against a large
+gradient flow and as the weight matrix grows, the neuron may
+remain inactive during training.
 
+\subsection{Loss Function}
+Loss function evaluates performance of the network by
+comparing the output $\mathbf{y}_t$ with the corresponding target $\mathbf{z}_t$
+defined as
+\begin{equation}
+  L(\mathbf{y,z}) = \sum_{t=1}^T L_t(\mathbf{y_t, z_t})
+\end{equation}
+that is an overall summation of losses in each timestep.
+Selection of the loss function is problem dependent. Some
+popular loss function are Euclidean distance and Hamming
+distance for forecasing of real-values and cross-entropy over
+probablity distribution of outputs for classification problems. 
+\section{Training Recurrent Neural Networks}
+Efficient training of a RNN is a major problem. The
+difficulty is in proper initialization of the weights in the network and the optimization algorithm to tune them in order
+to minimize the training loss. The relationship among network
+parameters and the dynamics of the hidden states through time
+causes instability. A glance at the proposed methods in the
+literature shows that the main focus is to reduce complexity
+of training algorithms, while accelerating the convergence.
+However, generally such algorithms take a large number of iterations to train the model. Some of the approaches for training
+RNNs are multi-grid random search, time-weighted pseudonewton optimization, GD, extended Kalman filter (EKF),
+Hessian-free, expectation maximization (EM), approx-
+imated Levenberg-Marquardt, and global optimization
+algorithms.
+\subsection{Initialization}
+Initialization of weights and biases in RNNs is critical.
+A general rule is to assign small values to the weights. A
+Gaussian draw with a standard deviation of 0.001 or 0.01 is a
+reasonable choice. The biases are usually set to zero,
+but the output bias can also be set to a very small value.
+However, the initialization of parameters is dependent on the
+task and properties of the input data such as dimensionality .
+Setting the initial weight using prior knowledge or in a semi-supervised fashion are other approaches.
+\subsection{Gradient-based Learning Methods}
+Gradient descent (GD) is a simple and popular optimization
+method in deep learning. The basic idea is to adjust the
+weights of the model by finding the error function derivatives
+with respect to each member of the weight matrices in the
+model. To minimize total loss, GD changes each weight
+in proportion to the derivative of the error with respect to
+that weight, provided that the non-linear activation functions
+are differentiable. The GD is also known as batch GD,
+as it computes the gradient for the whole dataset in each
+optimization iteration to perform a single update as
+\begin{equation}
+  \theta_{t+1} = \theta_t - \frac{\lambda}{U}\sum_{k=1}^U \pdv{L_k}{\theta}
+\end{equation}
+where $U$ is size of training set, $\lambda$ is the learning rate, and $\theta$ is
+set of parameters. This approach is computationally expensive
+for very large datasets and is not suitable for online training \\
 
-\section{Conclusion}
-...
-
+If you are familiar with training techniques for Feedforward Neural Networks such as backpropagation
+one question which might arise is how to properly backpropagate the error through a RNN. Here, a
+technique called Backpropagation Through Time (BPTT) is used. However, computing
+error-derivatives through time is difficult. This is mostly
+due to the relationship among the parameters and the dynamics
+of the RNN, that is highly unstable and makes GD ineffective.
+Gradient-based algorithms have difficulty in capturing depen-
+dencies as the duration of dependencies increases. The
+derivatives of the loss function with respect to the weights
+only consider the distance between the current output and the
+corresponding target, without using the history information for
+weights updating. RNNs cannot learn long-range temporal dependencies when GD is used for training. This is due
+to the exponential decay of gradient, as it is back-propagated
+through time, which is called the vanishing gradient problem.
+In another occasional situation, the back-propagated gradient
+can exponentially blow-up, which increases the variance of
+the gradients and results in very unstable learning situation,
+called the exploding gradient problem.
+\subsection{Back-propagation through time (BPTT)}
 \section*{Acknowledgments}
 ......
 
