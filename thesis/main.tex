@@ -247,6 +247,55 @@ can exponentially blow-up, which increases the variance of
 the gradients and results in very unstable learning situation,
 called the exploding gradient problem.
 \subsection{Back-propagation through time (BPTT)}
+Backpropagation Through Time (BPTT) is the adaption of the backpropagation algorithm for RNNs. In theory, this unfolds the RNN to construct a traditional Feedfoward Neural Network where
+we can apply backpropagation. For that, we use the same notations for the RNN as proposed before. \\
+
+
+Since we have three weight matrices $\mathbf{W}_{xh}$, $\mathbf{W}_{hh}$ and $\mathbf{W}_{ho}$ we need to compute the partial derivative to each of these weight matrices. With the chain rule which is also used in normal backpropagation we get to the result for $\mathbf{W}_{ho}$ shown in Equation 6.
+\begin{equation}
+  \pdv{L}{\mathbf{W}_{ho}} = \sum_{t=1}^T \pdv{\ell_t}{\mathbf{O}_t} \cdot \pdv{\mathbf{O}_t}{\phi_o} \cdot \pdv{\phi_o}{\mathbf{W}_{ho}} = \sum_{t=1}^T \pdv{\ell_t}{\mathbf{O}_t} \cdot \pdv{\mathbf{O}_t}{\phi_o} \cdot \mathbf{H}_t
+\end{equation}
+For the partial derivative with respect to $\mathbf{W}_{hh}$ we get the result shown in Equation 7.
+\begin{equation}
+  \pdv{L}{\mathbf{W}_{hh}} = \sum_{t=1}^T \pdv{\ell_t}{\mathbf{O}_t} \cdot \pdv{\mathbf{O}_t}{\phi_o} \cdot \pdv{\phi_o}{\mathbf{H}_t} \cdot \pdv{\mathbf{H}_t}{\phi_h} \cdot \pdv{\phi_h}{\mathbf{W}_{hh}}
+= \sum_{t=1}^T \pdv{\ell_t}{\mathbf{O}_t} \cdot \pdv{\mathbf{O}_t}{\phi_o} \cdot \mathbf{W}_{ho} \cdot \pdv{\mathbf{H}_t}{\phi_h} \cdot \pdv{\phi_h}{\mathbf{W}_{hh}}
+\end{equation}
+For the partial derivative with respect to $\mathbf{W}_{xh}$ we get the result shown in Equation 8.
+\begin{equation}
+  \pdv{L}{\mathbf{W}_{xh}} = \sum_{t=1}^T \pdv{\ell_t}{\mathbf{O}_t} \cdot \pdv{\mathbf{O}_t}{\phi_o} \cdot \pdv{\phi_o}{\mathbf{H}_t} \cdot \pdv{\mathbf{H}_t}{\phi_h} \cdot \pdv{\phi_h}{\mathbf{W}_{xh}}
+  = \sum_{t=1}^T \pdv{\ell_t}{\mathbf{O}_t} \cdot \pdv{\mathbf{O}_t}{\phi_o} \cdot \mathbf{W}_{ho} \cdot \pdv{\mathbf{H}_t}{\phi_h} \cdot \pdv{\phi_h}{\mathbf{W}_{xh}}
+\end{equation}
+
+Since each Ht depends on the previous time step we can substitute the last part from above equations
+to get Equation 9 and Equation 10.
+\begin{equation}
+  \pdv{L}{\mathbf{W}_{hh}} = \sum_{t=1}^T \pdv{\ell_t}{\mathbf{O}_t} \cdot \pdv{\mathbf{O}_t}{\phi_o} \cdot \mathbf{W}_{ho} \sum_{k=1}^t \pdv{\mathbf{H}_t}{\mathbf{H}_k} \cdot \pdv{\mathbf{H}_k}{\mathbf{W}_{hh}}
+\end{equation}
+
+\begin{equation}
+  \pdv{L}{\mathbf{W}_{xh}} = \sum_{t=1}^T \pdv{\ell_t}{\mathbf{O}_t} \cdot \pdv{\mathbf{O}_t}{\phi_o} \cdot \mathbf{W}_{ho} \sum_{k=1}^t \pdv{\mathbf{H}_t}{\mathbf{H}_k} \cdot \pdv{\mathbf{H}_k}{\mathbf{W}_{xh}}
+\end{equation}
+
+The adapted part can then further be written as shown in Equation 11 and Equation 12.
+\begin{equation}
+  \pdv{L}{\mathbf{W}_{hh}} = \sum_{t=1}^T \pdv{\ell_t}{\mathbf{O}_t} \cdot \pdv{\mathbf{O}_t}{\phi_o} \cdot \mathbf{W}_{ho} \sum_{k=1}^t (\mathbf{W}_{hh}^T)^{t-k} \cdot \mathbf{H}_k
+\end{equation}
+
+\begin{equation}
+  \pdv{L}{\mathbf{W}_{xh}} = \sum_{t=1}^T \pdv{\ell_t}{\mathbf{O}_t} \cdot \pdv{\mathbf{O}_t}{\phi_o} \cdot \mathbf{W}_{ho} \sum_{k=1}^t (\mathbf{W}_{hh}^T)^{t-k} \cdot \mathbf{X}_k
+\end{equation}
+From here, we can see that we need to store powers of Wk
+hh as we proceed through each loss term
+`t of the overall loss function L which can become very large. For these large values this method
+becomes numerically unstable since eigenvalues smaller than 1 vanish and eigenvalues larger than 1
+diverge. One method of solving this problem is truncate the sum at a computationally convenient
+size. When you do this, you're using Truncated BPTT. This basically establishes an upper
+bound for the number of time steps the gradient can flow back to. One can think of this upper
+bound as a moving window of past time steps which the RNN considers. Anything before the cut-off
+time step doesn't get taken into account. Since BPTT basically unfolds the RNN to create a new layer
+for each time step we can also think of this procedure as limiting the number of hidden layers.
+
+
 \section*{Acknowledgments}
 ......
 

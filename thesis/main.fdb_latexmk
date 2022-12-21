@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1671477813 "/home/aligator/Repositories/Recurrent Neural Networks (RNNs)/thesis/main.tex" "main.pdf" "main" 1671477814
-  "/home/aligator/Repositories/Recurrent Neural Networks (RNNs)/thesis/main.tex" 1671477813 12979 59cf47a68f5729f4e77be0cc4f1f71db ""
+["pdflatex"] 1671647037 "/home/aligator/Repositories/Recurrent Neural Networks (RNNs)/thesis/main.tex" "main.pdf" "main" 1671647038
+  "/home/aligator/Repositories/Recurrent Neural Networks (RNNs)/thesis/main.tex" 1671647037 16849 9924d2540de15749aac93dc6b80548c5 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1650183167 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1650183167 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1650183167 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -125,9 +125,9 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1671027086 2927661 3d2ac13c4146dd208575d57ffddcb7b3 ""
   "Figs/figure_1.png" 1671345571 21156 aa486b8556890351bc65c8117cffa8a1 ""
   "PRIMEarxiv.sty" 1671453738 7647 257f5f0b6c90ec491e05bd461066ae66 ""
-  "main.aux" 1671477814 1891 33d10602aa410a3707d641b3d17fc675 "pdflatex"
-  "main.out" 1671477814 1416 56ea05547f1fb3860b1665ccd0942b52 "pdflatex"
-  "main.tex" 1671477813 12979 59cf47a68f5729f4e77be0cc4f1f71db ""
+  "main.aux" 1671647037 1891 33d10602aa410a3707d641b3d17fc675 "pdflatex"
+  "main.out" 1671647037 1416 56ea05547f1fb3860b1665ccd0942b52 "pdflatex"
+  "main.tex" 1671647037 16849 9924d2540de15749aac93dc6b80548c5 ""
   (generated)
   "main.aux"
   "main.log"
