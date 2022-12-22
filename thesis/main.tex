@@ -295,6 +295,52 @@ bound as a moving window of past time steps which the RNN considers. Anything be
 time step doesn't get taken into account. Since BPTT basically unfolds the RNN to create a new layer
 for each time step we can also think of this procedure as limiting the number of hidden layers.
 
+\section{Exploding and Vanishing Gradients}
+While in principle the recurrent network is a simple
+and powerful model, in practice, it is unfortunately
+hard to train properly. Among the main reasons why
+this model is so unwieldy are the vanishing gradient and exploding gradient problems.
+\subsection{The mechanics}
+To understand this phenomenon we need to look at the
+form of each temporal component, and in particular at
+the matrix factors $\pdv{\mathbf{H}_t}{\mathbf{H}_k}$ (see equation (5)) that take the
+form of a product of $t-k$ Jacobian matrices. \textit{In the
+same way a product of $t-k$ real numbers can shrink
+to zero or explode to infinity, so does this product of
+matrices} (along some direction v).
+In what follows we will try to formalize these intu-
+itions (extending a similar derivation done in Bengio
+et al. (1994) where only a single hidden unit case was
+considered).
+
+If we consider a linear version of the model (i.e. set $\sigma$ to
+the identity function in equation (11)) we can use the
+power iteration method to formally analyze this product 
+of Jacobian matrices and obtain tight conditions
+for when the gradients explode or vanish (see the sup-
+plementary materials for a detailed derivation of these
+conditions). It is sufficient for the largest eigenvalue
+$\lambda_1$ of the recurrent weight matrix to be smaller than
+1 for long term components to vanish (as $t \rightarrow \infty$) and
+necessary for it to be larger than 1 for gradients to
+explode.
+
+We can generalize these results for nonlinear functions
+$\sigma$ where the absolute values of $\sigma'(x)$ is bounded (say
+by a value $\gamma \in R$) and therefore $||diag(\sigma'(\mathbf{H}_k))|| \le \gamma$.
+
+We first prove that it is sufficient for $\lambda_1 < \frac{1}{\lambda}$ , where
+$\lambda_1$ is the absolute value of the largest eigenvalue of
+the recurrent weight matrix Wrec, for the vanishing
+gradient problem to occur. Note that we assume the
+parametrization given by equation (11). The Jacobian
+matrix $pdv{\mathbf{H}_{k+1}}{\mathbf{H}_k}$ is given by $\mathbf{W}_{hh}^T diag(\sigma'(\mathbf{H}_k))$. The 2-
+norm of this Jacobian is bounded by the product of the norms of the two matrices (see equation (6)). Due
+to our assumption, this implies that it is smaller than 1.
+\begin{equation}
+  \forall k, \bigg |\bigg | \pdv{\mathbf{H}_{k+1}}{\mathbf{H}_k} \bigg |\bigg | \le ||\mathbf{W}_{hh}^T||
+  \mid\mid diag(\sigma'(\mathbf{H}_k))\mid\mid < \frac{1}{\gamma}\gamma < 1
+\end{equation} 
 
 \section*{Acknowledgments}
 ......
