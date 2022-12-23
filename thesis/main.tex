@@ -251,23 +251,23 @@ Backpropagation Through Time (BPTT) is the adaption of the backpropagation algor
 we can apply backpropagation. For that, we use the same notations for the RNN as proposed before. \\
 
 
-Since we have three weight matrices $\mathbf{W}_{xh}$, $\mathbf{W}_{hh}$ and $\mathbf{W}_{ho}$ we need to compute the partial derivative to each of these weight matrices. With the chain rule which is also used in normal backpropagation we get to the result for $\mathbf{W}_{ho}$ shown in Equation 6.
+Since we have three weight matrices $\mathbf{W}_{xh}$, $\mathbf{W}_{hh}$ and $\mathbf{W}_{ho}$ we need to compute the partial derivative to each of these weight matrices. With the chain rule which is also used in normal backpropagation we get to the result for $\mathbf{W}_{ho}$ shown in Equation 10.
 \begin{equation}
   \pdv{L}{\mathbf{W}_{ho}} = \sum_{t=1}^T \pdv{\ell_t}{\mathbf{O}_t} \cdot \pdv{\mathbf{O}_t}{\phi_o} \cdot \pdv{\phi_o}{\mathbf{W}_{ho}} = \sum_{t=1}^T \pdv{\ell_t}{\mathbf{O}_t} \cdot \pdv{\mathbf{O}_t}{\phi_o} \cdot \mathbf{H}_t
 \end{equation}
-For the partial derivative with respect to $\mathbf{W}_{hh}$ we get the result shown in Equation 7.
+For the partial derivative with respect to $\mathbf{W}_{hh}$ we get the result shown in Equation 11.
 \begin{equation}
   \pdv{L}{\mathbf{W}_{hh}} = \sum_{t=1}^T \pdv{\ell_t}{\mathbf{O}_t} \cdot \pdv{\mathbf{O}_t}{\phi_o} \cdot \pdv{\phi_o}{\mathbf{H}_t} \cdot \pdv{\mathbf{H}_t}{\phi_h} \cdot \pdv{\phi_h}{\mathbf{W}_{hh}}
 = \sum_{t=1}^T \pdv{\ell_t}{\mathbf{O}_t} \cdot \pdv{\mathbf{O}_t}{\phi_o} \cdot \mathbf{W}_{ho} \cdot \pdv{\mathbf{H}_t}{\phi_h} \cdot \pdv{\phi_h}{\mathbf{W}_{hh}}
 \end{equation}
-For the partial derivative with respect to $\mathbf{W}_{xh}$ we get the result shown in Equation 8.
+For the partial derivative with respect to $\mathbf{W}_{xh}$ we get the result shown in Equation 12.
 \begin{equation}
   \pdv{L}{\mathbf{W}_{xh}} = \sum_{t=1}^T \pdv{\ell_t}{\mathbf{O}_t} \cdot \pdv{\mathbf{O}_t}{\phi_o} \cdot \pdv{\phi_o}{\mathbf{H}_t} \cdot \pdv{\mathbf{H}_t}{\phi_h} \cdot \pdv{\phi_h}{\mathbf{W}_{xh}}
   = \sum_{t=1}^T \pdv{\ell_t}{\mathbf{O}_t} \cdot \pdv{\mathbf{O}_t}{\phi_o} \cdot \mathbf{W}_{ho} \cdot \pdv{\mathbf{H}_t}{\phi_h} \cdot \pdv{\phi_h}{\mathbf{W}_{xh}}
 \end{equation}
 
 Since each Ht depends on the previous time step we can substitute the last part from above equations
-to get Equation 9 and Equation 10.
+to get Equation 13 and Equation 14.
 \begin{equation}
   \pdv{L}{\mathbf{W}_{hh}} = \sum_{t=1}^T \pdv{\ell_t}{\mathbf{O}_t} \cdot \pdv{\mathbf{O}_t}{\phi_o} \cdot \mathbf{W}_{ho} \sum_{k=1}^t \pdv{\mathbf{H}_t}{\mathbf{H}_k} \cdot \pdv{\mathbf{H}_k}{\mathbf{W}_{hh}}
 \end{equation}
@@ -276,7 +276,7 @@ to get Equation 9 and Equation 10.
   \pdv{L}{\mathbf{W}_{xh}} = \sum_{t=1}^T \pdv{\ell_t}{\mathbf{O}_t} \cdot \pdv{\mathbf{O}_t}{\phi_o} \cdot \mathbf{W}_{ho} \sum_{k=1}^t \pdv{\mathbf{H}_t}{\mathbf{H}_k} \cdot \pdv{\mathbf{H}_k}{\mathbf{W}_{xh}}
 \end{equation}
 
-The adapted part can then further be written as shown in Equation 11 and Equation 12.
+The adapted part can then further be written as shown in Equation 15 and Equation 16.
 \begin{equation}
   \pdv{L}{\mathbf{W}_{hh}} = \sum_{t=1}^T \pdv{\ell_t}{\mathbf{O}_t} \cdot \pdv{\mathbf{O}_t}{\phi_o} \cdot \mathbf{W}_{ho} \sum_{k=1}^t (\mathbf{W}_{hh}^T)^{t-k} \cdot \mathbf{H}_k
 \end{equation}
@@ -284,9 +284,9 @@ The adapted part can then further be written as shown in Equation 11 and Equatio
 \begin{equation}
   \pdv{L}{\mathbf{W}_{xh}} = \sum_{t=1}^T \pdv{\ell_t}{\mathbf{O}_t} \cdot \pdv{\mathbf{O}_t}{\phi_o} \cdot \mathbf{W}_{ho} \sum_{k=1}^t (\mathbf{W}_{hh}^T)^{t-k} \cdot \mathbf{X}_k
 \end{equation}
-From here, we can see that we need to store powers of Wk
-hh as we proceed through each loss term
-`t of the overall loss function L which can become very large. For these large values this method
+From here, we can see that we need to store powers of $\mathbf{W}_{hh}^k$
+hh as we proceed through each loss term $\ell_t$
+of the overall loss function $L$ which can become very large. For these large values this method
 becomes numerically unstable since eigenvalues smaller than 1 vanish and eigenvalues larger than 1
 diverge. One method of solving this problem is truncate the sum at a computationally convenient
 size. When you do this, you're using Truncated BPTT. This basically establishes an upper
@@ -303,22 +303,19 @@ this model is so unwieldy are the vanishing gradient and exploding gradient prob
 \subsection{The mechanics}
 To understand this phenomenon we need to look at the
 form of each temporal component, and in particular at
-the matrix factors $\pdv{\mathbf{H}_t}{\mathbf{H}_k}$ (see equation (5)) that take the
+the matrix factors $\pdv{\mathbf{H}_t}{\mathbf{H}_k}$ that take the
 form of a product of $t-k$ Jacobian matrices. \textit{In the
 same way a product of $t-k$ real numbers can shrink
 to zero or explode to infinity, so does this product of
 matrices} (along some direction v).
-In what follows we will try to formalize these intu-
-itions (extending a similar derivation done in Bengio
-et al. (1994) where only a single hidden unit case was
+In what follows we will try to formalize these intuitions where only a single hidden unit case was
 considered).
 
 If we consider a linear version of the model (i.e. set $\sigma$ to
-the identity function in equation (11)) we can use the
+the identity function in equation (1)) we can use the
 power iteration method to formally analyze this product 
 of Jacobian matrices and obtain tight conditions
-for when the gradients explode or vanish (see the sup-
-plementary materials for a detailed derivation of these
+for when the gradients explode or vanish (see the supplementary materials for a detailed derivation of these
 conditions). It is sufficient for the largest eigenvalue
 $\lambda_1$ of the recurrent weight matrix to be smaller than
 1 for long term components to vanish (as $t \rightarrow \infty$) and
@@ -333,14 +330,30 @@ We first prove that it is sufficient for $\lambda_1 < \frac{1}{\lambda}$ , where
 $\lambda_1$ is the absolute value of the largest eigenvalue of
 the recurrent weight matrix Wrec, for the vanishing
 gradient problem to occur. Note that we assume the
-parametrization given by equation (11). The Jacobian
+parametrization given by equation (1). The Jacobian
 matrix $pdv{\mathbf{H}_{k+1}}{\mathbf{H}_k}$ is given by $\mathbf{W}_{hh}^T diag(\sigma'(\mathbf{H}_k))$. The 2-
-norm of this Jacobian is bounded by the product of the norms of the two matrices (see equation (6)). Due
+norm of this Jacobian is bounded by the product of the norms of the two matrices (see equation (17)). Due
 to our assumption, this implies that it is smaller than 1.
 \begin{equation}
   \forall k, \bigg |\bigg | \pdv{\mathbf{H}_{k+1}}{\mathbf{H}_k} \bigg |\bigg | \le ||\mathbf{W}_{hh}^T||
   \mid\mid diag(\sigma'(\mathbf{H}_k))\mid\mid < \frac{1}{\gamma}\gamma < 1
 \end{equation} 
+Let $\eta \in R$ be such that $\forall k, \mid\mid \pdv{\mathbf{H}_{k+1}}{\mathbf{H}_k} \le \eta < 1$.The
+existence of $\eta$ is given by equation (17). By induction
+over i, we can show that
+\begin{equation}
+  \pdv{\ell_t}{\mathbf{H}_t} \; (\prod_{i=k}^{t-1} \pdv{\mathbf{H}_{i+1}}{\mathbf{H}_i}) \le \eta^{t-k} \pdv{\ell_t}{\mathbf{H}_t}
+\end{equation}
+
+This equation shows that as $t-k$ gets larger, the long-term
+dependencies move toward zero and the vanishing problem
+happens. Finally, we can see that the sufficient condition for
+the gradient vanishing problem to appear is that the largest
+singular value of the recurrent weights matrix $\mathbf{W}_{hh} (i.e., \lambda_1)$
+satisfies $\lambda_1 < \frac{1}{\gamma}$
+
+\subsection{Dealing with the exploding and
+vanishing gradient}
 
 \section*{Acknowledgments}
 ......
