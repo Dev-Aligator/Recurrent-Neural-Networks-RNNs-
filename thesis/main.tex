@@ -26,7 +26,7 @@
 
   
 
-\title{\textbf{recurrent neural networks (RNNs): \\ a gentle introduction and overview}
+\title{\textbf{recurrent neural networks (RNNs): \\ for steering through time}
 
 }
 
@@ -47,13 +47,11 @@
   “Speech Recognition”, “Generating Image Descriptions” or “Video Tagging” have
   been using Recurrent Neural Networks as the foundation for their approaches.
   Understanding the underlying concepts is therefore of tremendous importance if
-  we want to keep up with recent or upcoming publications in those areas. In this
+  we want to keep up with recent or upcoming publications in those areas.
   work we give a short overview over some of the most important concepts in the
   realm of Recurrent Neural Networks which enables readers to easily understand
-  the fundamentals such as but not limited to “Backpropagation through Time” or
-  “Long Short-Term Memory Units” as well as some of the more recent advances like
-  the “Attention Mechanism” or “Pointer Networks”. We also give recommendations
-  for further reading regarding more complex topics where it is necessary.
+  the fundamentals such as but not limited to “Backpropagation through Time”, we will show why gradient based learning 
+  algorithms face an increasingly difficult problem as the duration of the dependencies to be captured increases.
 \end{abstract}
 
 \graphicspath{Figs/}
@@ -73,7 +71,7 @@ transmits information back into itself. This enables them to extend the function
 Networks to also take into account previous inputs $X_{0:t-1}$ and not only the current input $X_t$. This
 difference is visualised on a high level in Figure 1. Note, that here the option of having multiple
 hidden layers is aggregated to one Hidden Layer block H. This block can obviously be extended to
-multiple hidden layers.
+multiple hidden layers. 
 \subsection{Model Architecture}
 RNNs add recurrent layers to the NN (Neural Network)
 model and consists of three sets of layers (input, recurrent, and output).
@@ -350,13 +348,28 @@ dependencies move toward zero and the vanishing problem
 happens. Finally, we can see that the sufficient condition for
 the gradient vanishing problem to appear is that the largest
 singular value of the recurrent weights matrix $\mathbf{W}_{hh} (i.e., \lambda_1)$
-satisfies $\lambda_1 < \frac{1}{\gamma}$
+satisfies $\lambda_1 < \frac{1}{\gamma}$. For tanh we have $\gamma = 1$ while for sigmoid we have $\gamma = \frac{1}{4}$.
 
 \subsection{Dealing with the exploding and
 vanishing gradient}
+To deal with the exploding gradients
+problem, we propose a solution that involves clipping
+the norm of the exploded gradients when it is too large.
+The algorithm is motivated by the assumption that
+when gradients explode, the curvature and higher or-
+der derivatives explode as well, and we are faced with
+a specific pattern in the error surface, namely a val-
+ley with a single steep wall. In order to deal with
+the vanishing gradient problem we use a regulariza-
+tion term that forces the error signal not to vanish as
+it travels back in time. This regularization term forces
+the Jacobian matrices $\pdv{\mathbf{H}_i}{\mathbf{H}_{i-1}}$ to preserve norm only in
+relevant directions. In practice we show that these so-
+lutions improve performance on both the pathological
+synthetic datasets considered as well as on polyphonic
+music prediction and language modelling.
 
-\section*{Acknowledgments}
-......
+
 
 
 

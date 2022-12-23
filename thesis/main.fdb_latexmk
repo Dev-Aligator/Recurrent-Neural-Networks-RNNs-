@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1671773980 "/home/aligator/Repositories/Recurrent Neural Networks (RNNs)/thesis/main.tex" "main.pdf" "main" 1671773981
-  "/home/aligator/Repositories/Recurrent Neural Networks (RNNs)/thesis/main.tex" 1671773979 20060 68431a548423de44439c3a9cc6358db0 ""
+["pdflatex"] 1671818476 "/home/aligator/Repositories/Recurrent Neural Networks (RNNs)/thesis/main.tex" "main.pdf" "main" 1671818477
+  "/home/aligator/Repositories/Recurrent Neural Networks (RNNs)/thesis/main.tex" 1671818475 20866 667e06851094fdb432d33fd2ebdae0a0 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1650183167 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1650183167 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1650183167 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -42,6 +42,7 @@
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb" 1650183167 31809 8670ca339bf94e56da1fc21c80635e2a ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1650183167 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1650183167 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb" 1650183167 32915 7bf7720c61a5b3a7ff25b0964421c9b6 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1650183167 32716 08e384dc442464e7285e891af9f45947 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1650183167 34694 ad62b13721ee8eda1dcc8993c8bd7041 ""
   "/usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb" 1650183167 169201 9ebf99020dde51a5086e186761a34e8f ""
@@ -130,9 +131,9 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1671027086 2927661 3d2ac13c4146dd208575d57ffddcb7b3 ""
   "Figs/figure_1.png" 1671345571 21156 aa486b8556890351bc65c8117cffa8a1 ""
   "PRIMEarxiv.sty" 1671453738 7647 257f5f0b6c90ec491e05bd461066ae66 ""
-  "main.aux" 1671773981 2297 be3cf842f022e3f3daa95eec24816333 "pdflatex"
-  "main.out" 1671773981 2080 a6862908cbc267ef3a3d850589a36ae3 "pdflatex"
-  "main.tex" 1671773979 20060 68431a548423de44439c3a9cc6358db0 ""
+  "main.aux" 1671818477 2297 be3cf842f022e3f3daa95eec24816333 "pdflatex"
+  "main.out" 1671818477 2080 a6862908cbc267ef3a3d850589a36ae3 "pdflatex"
+  "main.tex" 1671818475 20866 667e06851094fdb432d33fd2ebdae0a0 ""
   (generated)
   "main.aux"
   "main.log"
