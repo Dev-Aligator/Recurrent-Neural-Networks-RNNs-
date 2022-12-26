@@ -93,6 +93,8 @@
 \usepackage{physics}
 \usepackage{xcolor}
 \usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 %\usepackage{helvet} % Use the Helvetica font for sans serif text
  % Use the Open Sans font for sans serif text
 %\usepackage[default]{FiraSans} % Use the Fira Sans font for sans serif text
@@ -397,7 +399,7 @@ weights of the model by finding the error function derivatives with respect to e
 	
  	\bigskip % Vertical whitespace
   
-        \begin{block}{The Gradient Descent or Batch GD}
+        \begin{block}{Batch Gradient Descent}
 		Computing the gradient for the whole dataset in each optimization iteration to perform a single update as
 		\begin{equation*}
             \theta_{t+1} = \theta_t - \frac{\lambda}{U}\sum_{k=1}^U \pdv{\ell_k}{\theta}
@@ -448,7 +450,7 @@ weights of the model by finding the error function derivatives with respect to e
 \begin{frame}
 	\frametitle{Back-propagation through time (BPTT)}
 
-		Since we have three weight matrices Wxh, Whh and Who we need to
+		Since we have three weight matrices $\mathbf{W}_{xh}, \mathbf{W}_{hh}$ and $\mathbf{W}_{ho}$ we need to
 compute the partial derivative to each of these weight matrices using the
 chain rule.
 		\smallskip
@@ -538,7 +540,7 @@ chain rule.
 		\bigskip
 	\begin{block}{}
 		\begin{equation*}
-			\mid\mid diag(\phi'_h(\mathbf{H}_k)) \mid\mid \le \gamma
+			\norm{diag(\phi'_h(\mathbf{H}_k))} \; \le \; \gamma
 		\end{equation*}
 	\end{block}
 		\bigskip
@@ -547,8 +549,8 @@ chain rule.
 	\begin{block}{}
 		\bigskip
 		\begin{equation*}
-			\forall k, \bigg |\bigg | \pdv{\mathbf{H}_{k+1}}{\mathbf{H}_k} \bigg |\bigg | \le ||\mathbf{W}_{hh}^T||
-			\mid\mid diag(\sigma'(\mathbf{H}_k))\mid\mid <  1
+			\forall k, \norm{\pdv{\mathbf{H}_{k+1}}{\mathbf{H}_k}}  \le \norm{\mathbf{W}_{hh}^T} \;
+			 \norm{diag(\sigma'(\mathbf{H}_k))} <  1
 		\end{equation*}
 	\end{block}
 \end{itemize}
@@ -557,13 +559,13 @@ chain rule.
 \begin{frame}
 	\frametitle{Vanishing Gradient}
 	\begin{itemize}
-		\item We can consider $\mid\mid \dv{\mathbf{H}_{k+1}}{\mathbf{H}_k} \mid\mid \le \eta < 1$ such as $\eta \in R$ for each
+		\item We can consider $\norm{\pdv{\mathbf{H}_{k+1}}{\mathbf{H}_k}} \le \eta < 1$ such as $\eta \in R$ for each
 		step $k$. By continuing it over different timesteps and adding
 		the loss function component we can have
 		\bigskip
 	\begin{block}{}
 		\begin{equation*}
-			\mid\mid \pdv{\ell_t}{\mathbf{H}_t} \; (\prod_{i=k}^{t-1} \pdv{\mathbf{H}_{i+1}}{\mathbf{H}_i}) \mid\mid \le \eta^{t-k} \mid\mid \pdv{\ell_t}{\mathbf{H}_t} \mid\mid
+			\norm{\pdv{\ell_t}{\mathbf{H}_t} \; (\prod_{i=k}^{t-1} \pdv{\mathbf{H}_{i+1}}{\mathbf{H}_i})} \le \eta^{t-k}  \norm{\pdv{\ell_t}{\mathbf{H}_t}}
 		\end{equation*}
 	\end{block}
 		\bigskip
@@ -582,7 +584,7 @@ chain rule.
 		the gradient during training largely increases.
 		\bigskip
 		\item  As it is stated before, the necessary condition for this situation to happen is
-		$\gamma > \frac{1}{\gamma}$.
+		$\lambda > \frac{1}{\gamma}$.
 	\end{itemize}
 \end{frame}
 
@@ -590,14 +592,14 @@ chain rule.
 	\frametitle{Conclusion for the 2 problems}
 	\begin{block}{Vanishing Gradient}
 		\begin{equation*}
-			 \mid \mid \pdv{\mathbf{H}_{i+i}}{\mathbf{H}_i} \mid \mid  < 1
+			 \norm{\pdv{\mathbf{H}_{i+i}}{\mathbf{H}_i}} \;\; < \;\; 1
 		\end{equation*}
 	\end{block}
 	\bigskip
 	\bigskip
 	\begin{block}{Exploding Gradient}
 		\begin{equation*}
-			\mid \mid \pdv{\mathbf{H}_{i+1}}{\mathbf{H}_i} \mid \mid  > 1
+			\norm{\pdv{\mathbf{H}_{i+1}}{\mathbf{H}_i}} \;\; > \;\; 1
 		\end{equation*}
 	\end{block}
 \end{frame}
