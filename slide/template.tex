@@ -3,7 +3,7 @@
 	11pt,
 ]{beamer}
 
-\graphicspath{images/} % Specifies where to look for included images (trailing slash required)
+% Specifies where to look for included images (trailing slash required)
 
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule for better rules in tables
 
@@ -239,7 +239,7 @@
 	\end{itemize}
 	\begin{figure}
 		\centering
-		\includegraphics[scale=0.5]{model_architecture_1.png}
+		\includegraphics[scale=0.25]{Images/architecture-rnn-ltr.png}
 	\end{figure}
 \end{frame}
 \begin{frame}
@@ -282,9 +282,83 @@ tanh function.
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+	\frametitle{Pros and Cons}
+	\large{\textcolor{blue}{\textbf{Benefits}}}
+	\begin{itemize}
+		\item Possibility of processing input of any length;
+		\item Model size not increasing with size of input;
+		\item Computation takes into account historical information;
+		\item Weights are shared across time
+	\end{itemize}
+	\bigskip
+	\large{\textcolor{red}{\textbf{Costs}}}
+	\begin{itemize}
+		\item Computation being slow;
+		\item Difficulty of accessing information from a long time ago;
+		\item Cannot consider any future input for the current state;
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Various usage of RNN}
+	\large{\textcolor{blue}{\textbf{One to One RNN}}}
+	\begin{itemize}
+		\item This type of neural network is known as the Vanilla Neural Network. It's used for general machine learning problems, which has a single input and a single output.
+	\end{itemize}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.5]{Images/one_to_one.png}
+		\caption{Vanilla Neural Network}
+	\end{figure}
+\end{frame}
 
 %------------------------------------------------
+\begin{frame}
+	\frametitle{Various usage of RNN}
+	\large{\textcolor{blue}{\textbf{One to Many RNN}}}
+	\begin{itemize}
+		\item A type of RNN that gives multiple outputs when given a single input. It takes a fixed input size and gives a sequence of data outputs.
+		\item Its applications can be found in Music Generation and Image Captioning.
+	\end{itemize}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.5]{Images/one_to_many.png}
+		\caption{One-to-Many mode}
+	\end{figure}
+\end{frame}
 
+\begin{frame}
+	\frametitle{Various usage of RNN}
+	\large{\textcolor{blue}{\textbf{Many to One RNN}}}
+	\begin{itemize}
+		\item Many-to-One is used when a single output is required from multiple input units or a sequence of them. It takes a sequence of inputs to display a fixed output.
+		\item Sentiment Analysis is a common example of this type of Recurrent Neural Network.
+	\end{itemize}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.4]{Images/many_to_one.png}
+		\caption{Many to One mode}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Various usage of RNN}
+	\large{\textcolor{blue}{\textbf{Many to Many RNN}}}
+	\begin{itemize}
+		\item Many-to-Many is used to generate a sequence of output data from a sequence of input units.
+		\item This type of RNN is further divided into the following two subcategories:
+		\begin{enumerate}
+			\item \textcolor{green}{Equal Unit Size:} In this case, the number of both the input and output units is the same. A common application can be found in Name-Entity Recognition.
+			\item \textcolor{green}{Unequal Unit Size} In this case, inputs and outputs have different numbers of units. Its application can be found in Machine Translation.
+		\end{enumerate}
+	\end{itemize}
+	\par
+	\raisebox{-.5\height}{\includegraphics[scale=0.3]{Images/many_to_many1.png}}%
+	\hfill
+	\raisebox{-.5\height}{\includegraphics[scale=0.3]{Images/many_to_many2.png}}%
+	\par
+\end{frame}
 
 \section{Training Recurrent Neural Networks}
 \begin{frame}
@@ -360,9 +434,9 @@ weights of the model by finding the error function derivatives with respect to e
 		\item BPTT unfolds the RNN to construct a traditional Feedfoward Neural Network where we can apply backpropagation.
         \bigskip % Vertical whitespace
 		\par
-		\raisebox{-.5\height}{\includegraphics[scale=0.4]{folded_rnn.png}}%
+		\raisebox{-.5\height}{\includegraphics[scale=0.4]{Images/folded_rnn.png}}%
 		\hfill
-		\raisebox{-.5\height}{\includegraphics[scale=0.4]{unfolded_rnn.png}}%
+		\raisebox{-.5\height}{\includegraphics[scale=0.4]{Images/unfolded_rnn.png}}%
 		\par
 
 			
@@ -535,12 +609,12 @@ chain rule.
 		gradients when it is too large.
 	\begin{figure}[h]
 		\centering
-		\includegraphics[scale=0.5]{gradient_clipping.png}
+		\includegraphics[scale=0.5]{Images/gradient_clipping.png}
 	\end{figure}
 		\item To deal with the vanishing gradients problem, we propose using LSTMs layers rather than normal Recurrent layers.
 	\begin{figure}[h]
 		\centering
-		\includegraphics[scale=0.45]{lstm.png}
+		\includegraphics[scale=0.45]{Images/lstm.png}
 		\caption{The LSTM memory block with one cell.}
 	\end{figure}
 \end{itemize}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.12.14)  26 DEC 2022 21:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.12.14)  26 DEC 2022 23:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -786,74 +786,122 @@ Package microtype Info: Loading generic protrusion settings for font family
 ] [6
 
 ]
-<model_architecture_1.png, id=227, 561.59813pt x 198.7425pt>
-File: model_architecture_1.png Graphic file (type png)
-<use model_architecture_1.png>
-Package pdftex.def Info: model_architecture_1.png  used on input line 244.
-(pdftex.def)             Requested size: 280.79837pt x 99.371pt.
- [7
+<Images/architecture-rnn-ltr.png, id=227, 1505.625pt x 401.5pt>
+File: Images/architecture-rnn-ltr.png Graphic file (type png)
+<use Images/architecture-rnn-ltr.png>
+Package pdftex.def Info: Images/architecture-rnn-ltr.png  used on input line 244.
+(pdftex.def)             Requested size: 376.40533pt x 100.37474pt.
 
- <./model_architecture_1.png (PNG copy)>] [8
+Overfull \hbox (34.11003pt too wide) in paragraph at lines 244--244
+ [] 
+ []
+
+[7
+
+ <./Images/architecture-rnn-ltr.png>] [8
 
 ] [9
 
-] (./template.toc) [10
-
-] [11
-
-] [12
-
-] [13
+] [10
 
 ]
-<folded_rnn.png, id=478, 310.15875pt x 140.02313pt>
-File: folded_rnn.png Graphic file (type png)
-<use folded_rnn.png>
-Package pdftex.def Info: folded_rnn.png  used on input line 370.
-(pdftex.def)             Requested size: 124.0613pt x 56.00826pt.
-<unfolded_rnn.png, id=479, 472.01344pt x 130.23656pt>
-File: unfolded_rnn.png Graphic file (type png)
-<use unfolded_rnn.png>
-Package pdftex.def Info: unfolded_rnn.png  used on input line 370.
-(pdftex.def)             Requested size: 188.80202pt x 52.09369pt.
+<Images/one_to_one.png, id=382, 252.19218pt x 250.68657pt>
+File: Images/one_to_one.png Graphic file (type png)
+<use Images/one_to_one.png>
+Package pdftex.def Info: Images/one_to_one.png  used on input line 314.
+(pdftex.def)             Requested size: 126.09578pt x 125.34297pt.
+ [11
+
+ <./Images/one_to_one.png (PNG copy)>]
+<Images/one_to_many.png, id=410, 324.46219pt x 176.91093pt>
+File: Images/one_to_many.png Graphic file (type png)
+<use Images/one_to_many.png>
+Package pdftex.def Info: Images/one_to_many.png  used on input line 329.
+(pdftex.def)             Requested size: 162.23068pt x 88.45525pt.
+ [12
+
+ <./Images/one_to_many.png (PNG copy)>]
+<Images/many_to_one.png, id=437, 398.23781pt x 279.29344pt>
+File: Images/many_to_one.png Graphic file (type png)
+<use Images/many_to_one.png>
+Package pdftex.def Info: Images/many_to_one.png  used on input line 343.
+(pdftex.def)             Requested size: 159.2923pt x 111.7154pt.
+
+Overfull \vbox (5.89543pt too high) detected at line 343
+ []
+
+[13
+
+ <./Images/many_to_one.png (PNG copy)>]
+<Images/many_to_many1.png, id=464, 375.65344pt x 250.68657pt>
+File: Images/many_to_many1.png Graphic file (type png)
+<use Images/many_to_many1.png>
+Package pdftex.def Info: Images/many_to_many1.png  used on input line 361.
+(pdftex.def)             Requested size: 112.6969pt x 75.20654pt.
+<Images/many_to_many2.png, id=465, 510.40688pt x 242.40562pt>
+File: Images/many_to_many2.png Graphic file (type png)
+<use Images/many_to_many2.png>
+Package pdftex.def Info: Images/many_to_many2.png  used on input line 361.
+(pdftex.def)             Requested size: 153.12323pt x 72.72223pt.
  [14
 
- <./folded_rnn.png (PNG copy)> <./unfolded_rnn.png (PNG copy)>] [15
+ <./Images/many_to_many1.png (PNG copy)> <./Images/many_to_many2.png (PNG copy)>] (./template.toc) [15
 
 ] [16
 
 ] [17
 
-] (./template.toc) [18
+] [18
 
-] [19
+]
+<Images/folded_rnn.png, id=617, 310.15875pt x 140.02313pt>
+File: Images/folded_rnn.png Graphic file (type png)
+<use Images/folded_rnn.png>
+Package pdftex.def Info: Images/folded_rnn.png  used on input line 444.
+(pdftex.def)             Requested size: 124.0613pt x 56.00826pt.
+<Images/unfolded_rnn.png, id=618, 472.01344pt x 130.23656pt>
+File: Images/unfolded_rnn.png Graphic file (type png)
+<use Images/unfolded_rnn.png>
+Package pdftex.def Info: Images/unfolded_rnn.png  used on input line 444.
+(pdftex.def)             Requested size: 188.80202pt x 52.09369pt.
+ [19
 
-] [20
+ <./Images/folded_rnn.png (PNG copy)> <./Images/unfolded_rnn.png (PNG copy)>] [20
 
 ] [21
 
 ] [22
 
-] [23
+] (./template.toc) [23
+
+] [24
+
+] [25
+
+] [26
+
+] [27
+
+] [28
 
 ]
-<gradient_clipping.png, id=873, 302.63063pt x 98.61844pt>
-File: gradient_clipping.png Graphic file (type png)
-<use gradient_clipping.png>
-Package pdftex.def Info: gradient_clipping.png  used on input line 547.
+<Images/gradient_clipping.png, id=1012, 302.63063pt x 98.61844pt>
+File: Images/gradient_clipping.png Graphic file (type png)
+<use Images/gradient_clipping.png>
+Package pdftex.def Info: Images/gradient_clipping.png  used on input line 621.
 (pdftex.def)             Requested size: 151.31494pt x 49.30908pt.
-<lstm.png, id=874, 263.48438pt x 224.33812pt>
-File: lstm.png Graphic file (type png)
-<use lstm.png>
-Package pdftex.def Info: lstm.png  used on input line 547.
+<Images/lstm.png, id=1013, 263.48438pt x 224.33812pt>
+File: Images/lstm.png Graphic file (type png)
+<use Images/lstm.png>
+Package pdftex.def Info: Images/lstm.png  used on input line 621.
 (pdftex.def)             Requested size: 118.56686pt x 100.95122pt.
 
-Overfull \vbox (26.79764pt too high) detected at line 547
+Overfull \vbox (26.79764pt too high) detected at line 621
  []
 
-[24
+[29
 
- <./gradient_clipping.png (PNG copy)> <./lstm.png (PNG copy)>]
+ <./Images/gradient_clipping.png (PNG copy)> <./Images/lstm.png (PNG copy)>]
 \tf@nav=\write6
 \openout6 = `template.nav'.
 
@@ -868,18 +916,18 @@ Package rerunfilecheck Info: File `template.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 25705 strings out of 478238
- 495774 string characters out of 5850455
- 866372 words of memory out of 5000000
- 43221 multiletter control sequences out of 15000+600000
- 490985 words of font info for 128 fonts, out of 8000000 for 9000
+ 25770 strings out of 478238
+ 497190 string characters out of 5850455
+ 866363 words of memory out of 5000000
+ 43263 multiletter control sequences out of 15000+600000
+ 492018 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,20n,122p,1074b,695s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfsx1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb>
-Output written on template.pdf (24 pages, 432352 bytes).
+ 128i,20n,122p,1074b,710s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfsx1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb>
+Output written on template.pdf (29 pages, 554050 bytes).
 PDF statistics:
- 999 PDF objects out of 1000 (max. 8388607)
- 811 compressed objects within 9 object streams
- 58 named destinations out of 1000 (max. 500000)
- 42146 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 1144 PDF objects out of 1200 (max. 8388607)
+ 942 compressed objects within 10 object streams
+ 68 named destinations out of 1000 (max. 500000)
+ 44219 words of extra memory for PDF output out of 51595 (max. 10000000)
 
