@@ -501,7 +501,7 @@ chain rule.
 		\item We can consider previous equation as a Jacobian matrix for the hidden state parameter as
 	\begin{block}{}
 		\begin{equation*}
-			\prod_{i = k + 1}^t \pdv{\mathbf{H}_i}{\mathbf{H}_{i-1}} = \prod_{i = k+1}^t \mathbf{W}_{hh}^T diag\mid \phi'_{h}(\mathbf{H}_{i-1})\mid
+			\prod_{i = k + 1}^t \pdv{\mathbf{H}_i}{\mathbf{H}_{i-1}} = \prod_{i = k+1}^t \mathbf{W}_{hh}^T diag(\phi'_{h}(\mathbf{H}_{i-1}))
 		\end{equation*}
 	\end{block}
 \end{itemize}
